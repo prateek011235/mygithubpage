@@ -1,4 +1,11 @@
+Options +FollowSymlinks
+RewriteEngine on
+rewritecond %{http_host} ^guptaprateek.me [nc]
+rewriterule ^(.*)$ http://www.guptaprateek.me/$1 [r=301,nc]
+
 # 1 Month for most static assets
 <filesMatch ".(css|jpg|jpeg|png|js|ico)$">
 Header set Cache-Control "max-age=2592000, public"
 </filesMatch>
+
+
