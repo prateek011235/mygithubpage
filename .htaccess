@@ -3,7 +3,21 @@ RewriteEngine on
 rewritecond %{http_host} ^guptaprateek.me [nc]
 rewriterule ^(.*)$ http://www.guptaprateek.me/$1 [r=301,nc]
 
-# 1 Month for most static assets
-<filesMatch ".(css|jpg|jpeg|png|js|ico)$">
-Header set Cache-Control "max-age=2592000, public"
-</filesMatch>
+<IfModule mod_expires.c>
+# Enable expirations
+ExpiresActive On 
+# Default directive
+ExpiresDefault "access plus 1 month"
+# My favicon
+ExpiresByType image/x-icon "access plus 1 year"
+# Images
+ExpiresByType image/gif "access plus 1 month"
+ExpiresByType image/png "access plus 1 month"
+ExpiresByType image/jpg "access plus 1 month"
+ExpiresByType image/jpeg "access plus 1 month"
+# CSS
+ExpiresByType text/css "access plus 1 month"
+# Javascript
+ExpiresByType application/javascript "access plus 1 year"
+</IfModule>
+
